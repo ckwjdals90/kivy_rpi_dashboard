@@ -3,8 +3,10 @@ from kivy.uix.label import Label
 
 
 class FailedScreen(Screen):
+    # Custom screen to notify users where certain plugins have not installed
+    # correctly
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__()
 
         # Get details of the screens that have failed
@@ -30,7 +32,7 @@ class FailedScreen(Screen):
         # Loop over screens with other unhandled errors.
         if self.failed:
             mess += ("Errors were encountered trying to create the following "
-                     "screens: \n\n")
+                     "screens:\n\n")
             for f in self.failed:
                 mess += "{0}: {1}\n".format(*f)
 

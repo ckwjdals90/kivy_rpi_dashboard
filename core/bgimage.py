@@ -9,7 +9,7 @@ class BGImage(Image):
     bgcolour = ListProperty([0, 0, 0, 0])
     fgcolour = ListProperty([0, 0, 0, 0])
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__()
 
 

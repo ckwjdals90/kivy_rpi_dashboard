@@ -21,7 +21,7 @@ class InfoScreen(FloatLayout):
     # Flag for determining whether screen is locked or not
     locked = BooleanProperty(False)
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         self.scrmgr = ObjectProperty(None)
 
         super().__init__()
@@ -36,7 +36,7 @@ class InfoScreen(FloatLayout):
         self.index = 0
 
         # We want to handle failures gracefully so set up some variables
-        # variable to hold the FiulScreen object (if needed)
+        # variable to hold the FailScreen object (if needed)
         self.failscreen = None
 
         # Empty lists to track varous failures
@@ -48,6 +48,7 @@ class InfoScreen(FloatLayout):
 
         # Loop over plugins
         for p in plugins:
+
             # Set up a tuple to store list of unmet dependencies
             plugin_dep = (p["name"], [])
 
@@ -92,8 +93,9 @@ class InfoScreen(FloatLayout):
                     # We can add the screen to out list of available screens
                     self.availablescreens.append(p["name"])
 
-        # if we've got any failure then let's notify the user
+        # If we've got any failure then let's notify the user
         if dep_failure or scr_failure:
+
             # Create the FailedScreen instance
             self.failscreen = FailedScreen(dep=dep_failure,
                                            failed=scr_failure,
@@ -128,7 +130,7 @@ class InfoScreen(FloatLayout):
             # Get the details for the screen
             p = foundscreen[0]
 
-            # Inport it
+            # Import it
             plugin = imp.load_module("screen", *p["info"])
 
             # Get the reference to the screen class
@@ -145,7 +147,7 @@ class InfoScreen(FloatLayout):
             # Add to our list of available screens
             self.availablescreens.append(screenname)
 
-            # Active screen
+            # Activate screen
             self.switch_to(screenname)
 
         elif screenname in self.availablescreens:
@@ -162,7 +164,7 @@ class InfoScreen(FloatLayout):
         # Loop over list of available screens
         while screenname in self.availablescreens:
 
-            # Remove sreen from list of available screens
+            # Remove screen from list of available screens
             self.availablescreens.remove(screenname)
 
             # Change the display to the next screen
@@ -191,8 +193,9 @@ class InfoScreen(FloatLayout):
                 self.scrmgr.transition.direction = "right"
                 inc = -1
             else:
-                self.scrmgr.transition = "left"
-                inc = -1
+                self.scrmgr.transition.direction = "left"
+                inc = 1
+
             self.index = (self.index + inc) % len(self.availablescreens)
             self.scrmgr.current = self.availablescreens[self.index]
 
@@ -252,7 +255,7 @@ if __name__ == "__main__":
         Logger.warning("Bottle module not found. Cannot start webserver.")
         web_enabled = False
 
-    if web.get("enagles") and web_enabled:
+    if web.get("enabled") and web_enabled:
 
         # Start our webserver
         webport = web.get("webport", 8088)
@@ -263,5 +266,6 @@ if __name__ == "__main__":
                          apiport,
                          debug)
 
-    # Good to go. Let's start the app
+    # Good to go
+    # Let's start the app
     InfoScreenApp().run()

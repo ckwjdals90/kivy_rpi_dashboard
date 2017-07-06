@@ -8,7 +8,7 @@ class BGLabel(Label):
     # to a label via the "bgcolour" property
     bgcolour = ListProperty([0, 0, 0, 0])
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__()
 
 

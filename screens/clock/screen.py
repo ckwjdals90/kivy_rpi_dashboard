@@ -6,11 +6,11 @@ from kivy.uix.screenmanager import Screen
 
 
 class ClockScreen(Screen):
-    """ Simple plugin screen to show digital clock of current time """
+    # Simple plugin screen to show digital clock of current time
     # String Property to hold time
     timedata = DictProperty(None)
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         self.get_time()
         super().__init__()
         self.timer = None

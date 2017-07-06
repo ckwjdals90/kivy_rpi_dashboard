@@ -3,9 +3,9 @@ import os
 import json
 
 # Constants that are used to find plugins
-PluginFolder = './screens'
-PluginScript = 'screen.py'
-ScreenConf = 'conf.json'
+PluginFolder = "./screens"
+PluginScript = "screen.py"
+ScreenConf = "conf.json"
 
 
 def getPlugins(inactive=False):
@@ -58,7 +58,7 @@ def getPlugins(inactive=False):
                           "web": web}
 
                 plugins.append(plugin)
-                a += 1
+                a = a + 1
 
     # We are done so return the list of avaiable/enabled plugins
     return plugins
