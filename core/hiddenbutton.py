@@ -1,5 +1,5 @@
 from kivy.uix.behaviors import ButtonBehavior
-from core.bglabel import BGLabel, BGLabelButton
+from core.bglabel import BGLabel  # , BGLabelButton
 
 
 class HiddenButton(ButtonBehavior, BGLabel):
