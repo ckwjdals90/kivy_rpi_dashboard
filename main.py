@@ -8,20 +8,20 @@ from kivy.lang import Builder
 from kivy.logger import Logger
 
 from core.getplugins import getPlugins
-from core.infoscreen import InfoScreen
+from core.dashboard import Dashboard
 
 # Set the current working directory
 os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
 
 
-class InfoScreenApp(App):
+class DashboardApp(App):
     base = None
 
     def build(self):
         # Window size is hardcoded for resolution of official Raspberry Pi
         # display. Can be altered but plugins may not display correctly.
         Window.size = (800, 480)
-        self.base = InfoScreen(plugins=plugins)
+        self.base = Dashboard(plugins=plugins)
         return self.base
 
 
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # Get a list of installed plugins
     plugins = getPlugins()
 
-    # Get the base KV language file for the InfoScreen app.
+    # Get the base KV language file for the Dashboard app.
     kv_text = "".join(open("base.kv").readlines()) + "\n"
 
     # Load the master KV file
@@ -71,4 +71,4 @@ if __name__ == "__main__":
                          debug)
 
     # Good to go | Let's start the app
-    InfoScreenApp().run()
+    DashboardApp().run()

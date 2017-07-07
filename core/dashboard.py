@@ -9,7 +9,7 @@ from core.failedscreen import FailedScreen
 from core.getplugins import getPlugins
 
 
-class InfoScreen(FloatLayout):
+class Dashboard(FloatLayout):
     # Flag for determining whether screen is locked or not
     locked = BooleanProperty(False)
 
